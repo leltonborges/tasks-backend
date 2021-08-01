@@ -42,5 +42,15 @@ pipeline {
                 }
             }
         }
+        stage('Deploy FrontEnd'){
+            steps {
+                dir('tasks-front'){
+                    git branch: 'master', url: 'https://github.com/leltonborges/tasks-frontend.git'
+                    sh 'mvn clean package'
+                    deploy adapters: [tomcat8(credentialsId: 'ID_TOMCAT', path: '', url: 'http://localhost:8081/')], contextPath: 'tasks', war: 'target/tasks.war'
+
+                }
+            }
+        }
     }
 }
