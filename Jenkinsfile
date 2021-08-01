@@ -52,5 +52,13 @@ pipeline {
                 }
             }
         }
+        stage('Functional Test'){
+            steps {
+                dir('functional-test'){
+                    git branch: 'main', url: 'https://github.com/leltonborges/tasks-functional-tests.git'
+                    sh 'mvn clean test'
+                }
+            }
+        }
     }
 }
