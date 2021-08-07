@@ -46,10 +46,12 @@ services:
             - prod_net_front
         ports:
             - 9999:8080
+        links: 
+            - backend
         environment:
-            - BACKEND_HOST=backend
-            - BACKEND_PORT=8080
-            - APP_VERSION=build_${BUILD_NUMBER}
+            BACKEND_HOST: backend
+            BACKEND_PORT: 8080
+            APP_VERSION: build_${BUILD_NUMBER}
         depends_on:    
             - backend 
 
