@@ -2,7 +2,7 @@ version: "3"
 services:
     db:
         container_name: pg-prod
-        image: postgres:9.6
+        image: postgres:9.6-buster
         networks:
             - prod_net_back
         environment:
@@ -47,7 +47,7 @@ services:
         ports:
             - 9999:8080
         links: 
-            - backend
+            - backend-prod
         environment:
             BACKEND_HOST: backend
             BACKEND_PORT: 8080
